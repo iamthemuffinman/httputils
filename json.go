@@ -6,12 +6,9 @@ import (
 )
 
 // WriteJSONError writes a string as JSON encoded error
-func WriteJSONError(w http.ResponseWriter, code int, err string) {
+func WriteJSONError(w http.ResponseWriter, err string, code int) {
 	w.WriteHeader(code)
-
-	WriteJSON(w, map[string]string{
-		"error": err,
-	})
+	WriteJSON(w, err, code)
 }
 
 // WriteJSON writes the given interface as JSON or returns an error
