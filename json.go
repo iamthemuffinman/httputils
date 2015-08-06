@@ -15,13 +15,13 @@ func WriteJSONError(w http.ResponseWriter, code int, err string) {
 }
 
 // WriteJSON writes the given interface as JSON or returns an error
-func WriteJSON(w http.ResponseWriter, v interface{}) error {
-	b, err := json.MarshalIndent(v, "", "  ")
+func WriteJSON(w http.ResponseWriter, v interface{}, code int) error {
+	data, err := json.MarshalIndent(v, "", "  ")
 	if err != nil {
 		return err
 	}
-
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Write(b)
+	w.WriteHeader(code)
+	w.Write(data)
 	return nil
 }
