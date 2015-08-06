@@ -8,7 +8,7 @@ import (
 // WriteJSONError writes a string as JSON encoded error
 func WriteJSONError(w http.ResponseWriter, err string, code int) {
 	w.WriteHeader(code)
-	WriteJSON(w, err, code)
+	w.Write([]byte(err))
 }
 
 // WriteJSON writes the given interface as JSON or returns an error
